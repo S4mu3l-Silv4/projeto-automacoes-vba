@@ -1,4 +1,4 @@
-Sub EnviarEmailCobrancaVOClaro()
+Sub EnviarEmailProgramacaoPagamentos()
 
     Dim OutlookApp As Object
     Dim OutlookMail As Object
@@ -6,12 +6,7 @@ Sub EnviarEmailCobrancaVOClaro()
     Dim CorpoEmail As String
     Dim CaminhoArquivo As String
     
-    If ThisWorkbook.Path = "" Then
-        MsgBox "Salve a planilha antes de enviar o e-mail.", vbExclamation
-        Exit Sub
-    End If
-    
-    ThisWorkbook.Save
+    CaminhoArquivo = "C:\xxx"
     
     On Error Resume Next
     Set OutlookApp = GetObject(Class:="Outlook.Application")
@@ -23,12 +18,12 @@ Sub EnviarEmailCobrancaVOClaro()
     
     Set OutlookMail = OutlookApp.CreateItem(0)
     
-    CaminhoArquivo = ThisWorkbook.FullName
-    
     With OutlookMail
-        .To = "exemplo@xxx.com.br; exemplo@xxx.com.br"
-        .Cc = "exemplo@xxx.com.br; exemplo@xxx.com.br"
+        .To = "exemplo@xxx.com; exemplo@xxx.com"
+        .Cc = "exemplo@xxx.com; exemplo@xxx.com"
         .Subject = "Programação de Pagamentos - CO - W"
+        
+        .Attachments.Add CaminhoArquivo
         
         .Display
         
@@ -36,12 +31,10 @@ Sub EnviarEmailCobrancaVOClaro()
         
         CorpoEmail = "<div style='font-family:Calibri; font-size:11pt;'>" & _
                 "Bom dia, <br><br>" & _
-                "Segue a programação de pagamentos: <br><br>" & _
+                "Segue a Programação de Pagamentos: <br><br>" & _
             "</div>"
         
         .HTMLBody = CorpoEmail & Assinatura
-        
-        .Attachments.Add CaminhoArquivo
         
     End With
     

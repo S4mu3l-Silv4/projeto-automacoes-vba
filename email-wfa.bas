@@ -1,4 +1,4 @@
-Sub EnviarEmailLiberacaoTrigger()
+Sub EnviarEmailWFA()
 
     Dim OutlookApp As Object
     Dim OutlookMail As Object
@@ -16,9 +16,9 @@ Sub EnviarEmailLiberacaoTrigger()
     Set OutlookMail = OutlookApp.CreateItem(0)
     
     With OutlookMail
-        .To = "exemplo@xxx.com.br; exemplo@xxx.com.br; exemplo@xxx.com.br; exemplo@xxx.com.br; exemplo@xxx.com.br"
+        .To = "exemplo@xxx.com; exemplo@xxx.com; exemplo@xxx.com; exemplo@xxx.com; exemplo@xxx.com"
         .Cc = ""
-        .Subject = "WFA - Mês- W"
+        .Subject = "RES: WFA - mês - W"
         
         .Display
         
