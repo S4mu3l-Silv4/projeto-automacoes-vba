@@ -1,4 +1,4 @@
-Sub EnviarEmailCobrancaVOClaro()
+Sub EnviarEmailRelatorioWFA()
     Dim OutlookApp As Object
     Dim OutlookMail As Object
     Dim WordEditor As Object
@@ -6,7 +6,7 @@ Sub EnviarEmailCobrancaVOClaro()
     Dim saudacao As String
     Dim horaAtual As Integer
     On Error Resume Next
-    Set rng = Sheets("VOs_CO").Range("A1").CurrentRegion.SpecialCells(xlCellTypeVisible)
+    Set rng = Sheets("WFA").Range("A1").CurrentRegion.SpecialCells(xlCellTypeVisible)
     On Error GoTo 0
     horaAtual = Hour(Now)
     If horaAtual >= 18 Then
@@ -26,16 +26,16 @@ Sub EnviarEmailCobrancaVOClaro()
     On Error GoTo 0
     Set OutlookMail = OutlookApp.CreateItem(0)
     With OutlookMail
-        .To = "exemplo@xxx.com; exemplo@xxx.com; exemplo@xxx.com; exemplo@xxx.com; exemplo@xxx.com"
-        .CC = "exemplo@xxx.com; exemplo@xxx.com; exemplo@xxx.com"
-        .Subject = "Cobrança de VO - Claro - CO"
+        .To = "exemplo@xxx.com; exemplo@xxx.com; exemplo@xxx.com; exemplo@xxx.com; exemplo@xxx.com; exemplo@xxx.com"
+        .CC = ""
+        .Subject = "WFA - Mês - W" & numSemana
         .Display
         Set WordEditor = .GetInspector.WordEditor
         With WordEditor.Application.Selection
             .TypeText saudacao
             .TypeParagraph
             .TypeParagraph
-            .TypeText "Poderiam verificar as VOs abaixo por gentileza? Esses casos estão com pendência de aprovação: "
+            .TypeText "Segue o relatório de WFA atualizado: "
             .TypeParagraph
             .TypeParagraph
         End With
