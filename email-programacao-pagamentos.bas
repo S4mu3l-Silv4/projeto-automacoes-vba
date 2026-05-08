@@ -1,14 +1,13 @@
 Sub EnviarEmailProgramacaoPagamentos()
     Dim OutlookApp As Object
     Dim OutlookMail As Object
-    Dim numSemana As Integer
-    Dim Assinatura As String
-    Dim CorpoEmail As String
     Dim CaminhoArquivo As String
     Dim saudacao As String
     Dim horaAtual As Integer
+    Dim numSemana As Integer
+    Dim CorpoEmail As String
+    Dim Assinatura As String
     CaminhoArquivo = "C:\Users\OPERAÇÃO 03\Dropbox\Subcon_CO\FSP - Form. Solicitação de Pagamentos - v2026_1_CO.xlsm"
-    numSemana = DatePart("ww", Date, vbMonday, vbFirstFourDays)
     horaAtual = Hour(Now)
     If horaAtual >= 18 Then
         saudacao = "Boa noite, "
@@ -19,6 +18,7 @@ Sub EnviarEmailProgramacaoPagamentos()
     Else
         saudacao = "Boa noite, "
     End If
+    numSemana = DatePart("ww", Date, vbMonday, vbFirstFourDays)
     On Error Resume Next
     Set OutlookApp = GetObject(Class:="Outlook.Application")
     If OutlookApp Is Nothing Then

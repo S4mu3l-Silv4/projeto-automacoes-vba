@@ -5,6 +5,7 @@ Sub EnviarEmailRelatorioWFA()
     Dim rng As Range
     Dim saudacao As String
     Dim horaAtual As Integer
+    Dim numSemana As Integer
     On Error Resume Next
     Set rng = Sheets("WFA").Range("A1").CurrentRegion.SpecialCells(xlCellTypeVisible)
     On Error GoTo 0
@@ -18,6 +19,7 @@ Sub EnviarEmailRelatorioWFA()
     Else
         saudacao = "Boa noite, "
     End If
+    numSemana = DatePart("ww", Date, vbMonday, vbFirstFourDays)
     On Error Resume Next
     Set OutlookApp = GetObject(Class:="Outlook.Application")
     If OutlookApp Is Nothing Then
@@ -35,7 +37,7 @@ Sub EnviarEmailRelatorioWFA()
             .TypeText saudacao
             .TypeParagraph
             .TypeParagraph
-            .TypeText "Segue o relatório de WFA atualizado: "
+            .TypeText "Segue o relatório WFA atualizado: "
             .TypeParagraph
             .TypeParagraph
         End With

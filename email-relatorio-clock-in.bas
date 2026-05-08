@@ -2,9 +2,9 @@ Sub EnviarEmailRelatorioClockIn()
     Dim OutlookApp As Object
     Dim OutlookMail As Object
     Dim Assinatura As String
-    Dim CorpoEmail As String
     Dim saudacao As String
     Dim horaAtual As Integer
+    Dim CorpoEmail As String
     horaAtual = Hour(Now)
     If horaAtual >= 18 Then
         saudacao = "Boa noite, "
