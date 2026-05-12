@@ -1,11 +1,16 @@
-Sub EnviarEmailRelatorioSemanal()
+Sub EnviarEmailRelatorioOperacional()
     Dim OutlookApp As Object
     Dim OutlookMail As Object
+    Dim WordEditor As Object
+    Dim rng As Range
     Dim saudacao As String
     Dim horaAtual As Integer
     Dim numSemana As Integer
     Dim CorpoEmail As String
     Dim Assinatura As String
+    On Error Resume Next
+    Set rng = Sheets("Relatorio_Operacional_CO").Range("A1").CurrentRegion.SpecialCells(xlCellTypeVisible)
+    On Error GoTo 0
     horaAtual = Hour(Now)
     If horaAtual >= 18 Then
         saudacao = "Boa noite, "
@@ -25,17 +30,24 @@ Sub EnviarEmailRelatorioSemanal()
     On Error GoTo 0
     Set OutlookMail = OutlookApp.CreateItem(0)
     With OutlookMail
-        .To = "exemplo@xxx.com; exemplo@xxx.com; exemplo@xxx.com; exemplo@xxx.com"
-        .Cc = ""
+        .To = "exemplo@xxx.com; exemplo@xxx.com; exemplo@xxx.com"
+        .CC = ""
         .Subject = "Relatório semanal de fechamento operacional - CO - W" & numSemana
         .Display
         Assinatura = .HTMLBody
-        CorpoEmail = "<div style='font-family: Calibri; font-size: 12pt;'>" & _
+        CorpoEmail = "<div style='font-family:Calibri;font-size:11pt;'>" & _
             saudacao & "<br><br>" & _
             "Segue o relatório semanal referente ao fechamento operacional: <br>" & _
         "</div>"
         .HTMLBody = CorpoEmail & Assinatura
+        Set WordEditor = .GetInspector.WordEditor
+        rng.Copy
+        WordEditor.Application.Selection.HomeKey 6
+        WordEditor.Application.Selection.MoveDown Unit:=5, Count:=4
+        WordEditor.Application.Selection.PasteExcelTable False, False, True
     End With
+    Set rng = Nothing
+    Set WordEditor = Nothing
     Set OutlookMail = Nothing
     Set OutlookApp = Nothing
 End Sub

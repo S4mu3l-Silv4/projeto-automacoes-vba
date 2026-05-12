@@ -1,13 +1,18 @@
 Sub EnviarEmailProgramacaoPagamentos()
     Dim OutlookApp As Object
     Dim OutlookMail As Object
+    Dim WordEditor As Object
+    Dim rng As Range
     Dim CaminhoArquivo As String
     Dim saudacao As String
     Dim horaAtual As Integer
     Dim numSemana As Integer
     Dim CorpoEmail As String
     Dim Assinatura As String
-    CaminhoArquivo = "C:\Users\OPERAÇÃO 03\Dropbox\Subcon_CO\FSP - Form. Solicitação de Pagamentos - v2026_1_CO.xlsm"
+    CaminhoArquivo = "C:\Users\OPERAÇÃO 03\Dropbox\VOs_CO\VOs_CO.xlsm"
+    On Error Resume Next
+    Set rng = Sheets("FSP - Pagamentos Premcell").Range("A1").CurrentRegion.SpecialCells(xlCellTypeVisible)
+    On Error GoTo 0
     horaAtual = Hour(Now)
     If horaAtual >= 18 Then
         saudacao = "Boa noite, "
@@ -27,18 +32,25 @@ Sub EnviarEmailProgramacaoPagamentos()
     On Error GoTo 0
     Set OutlookMail = OutlookApp.CreateItem(0)
     With OutlookMail
-        .To = "financeiro@premcell.com.br; kelly.martins@premcell.com.br"
-        .Cc = "joao.moreira@premcell.com.br; luan.pereira@premcell.com.br"
+        .To = "exemplo@xxx.com; exemplo@xxx.com"
+        .CC = "exemplo@xxx.com; exemplo@xxx.com"
         .Subject = "Programação de Pagamentos - CO - W" & numSemana
         .Attachments.Add CaminhoArquivo
         .Display
         Assinatura = .HTMLBody
-        CorpoEmail = "<div style='font-family: Calibri; font-size: 11pt;'>" & _
+        CorpoEmail = "<div style='font-family:Calibri;font-size:11pt;'>" & _
             saudacao & "<br><br>" & _
             "Segue a Programação de Pagamentos: <br>" & _
         "</div>"
         .HTMLBody = CorpoEmail & Assinatura
+        Set WordEditor = .GetInspector.WordEditor
+        rng.Copy
+        WordEditor.Application.Selection.HomeKey 6
+        WordEditor.Application.Selection.MoveDown Unit:=5, Count:=4
+        WordEditor.Application.Selection.PasteExcelTable False, False, True
     End With
+    Set rng = Nothing
+    Set WordEditor = Nothing
     Set OutlookMail = Nothing
     Set OutlookApp = Nothing
 End Sub

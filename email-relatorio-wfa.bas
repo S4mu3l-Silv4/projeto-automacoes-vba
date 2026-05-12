@@ -6,6 +6,8 @@ Sub EnviarEmailRelatorioWFA()
     Dim saudacao As String
     Dim horaAtual As Integer
     Dim numSemana As Integer
+    Dim CorpoEmail As String
+    Dim Assinatura As String
     On Error Resume Next
     Set rng = Sheets("WFA").Range("A1").CurrentRegion.SpecialCells(xlCellTypeVisible)
     On Error GoTo 0
@@ -32,18 +34,20 @@ Sub EnviarEmailRelatorioWFA()
         .CC = ""
         .Subject = "WFA - Mês - W" & numSemana
         .Display
+        Assinatura = .HTMLBody
+        CorpoEmail = "<div style='font-family:Calibri;font-size:11pt;'>" & _
+            saudacao & "<br><br>" & _
+            "Segue o relatório WFA atualizado: <br>" & _
+        "</div>"
+        .HTMLBody = CorpoEmail & Assinatura
         Set WordEditor = .GetInspector.WordEditor
-        With WordEditor.Application.Selection
-            .TypeText saudacao
-            .TypeParagraph
-            .TypeParagraph
-            .TypeText "Segue o relatório WFA atualizado: "
-            .TypeParagraph
-            .TypeParagraph
-        End With
         rng.Copy
+        WordEditor.Application.Selection.HomeKey 6
+        WordEditor.Application.Selection.MoveDown Unit:=5, Count:=4
         WordEditor.Application.Selection.PasteExcelTable False, False, True
     End With
+    Set rng = Nothing
+    Set WordEditor = Nothing
     Set OutlookMail = Nothing
     Set OutlookApp = Nothing
 End Sub
