@@ -8,7 +8,7 @@ Sub EnviarEmailCobrancaVOVivo()
     Dim CorpoEmail As String
     Dim Assinatura As String
     On Error Resume Next
-    Set rng = Sheets("VOs_CO").Range("A1").CurrentRegion.Resize(, 9).SpecialCells(xlCellTypeVisible)
+    Set rng = Sheets("VOs_CO").Range("A1").CurrentRegion.Resize(, 8).SpecialCells(xlCellTypeVisible)
     On Error GoTo 0
     horaAtual = Hour(Now)
     If horaAtual >= 18 Then
