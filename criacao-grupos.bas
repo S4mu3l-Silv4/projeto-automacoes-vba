@@ -1,13 +1,14 @@
 Sub CriarGrupos()
     Dim comando As String
     Dim nomeGrupo As String
-    Dim contatos(1 To 3) As String
+    Dim contatos(1 To 4) As String
     Dim i As Integer, g As Integer, c As Integer
     Dim celulas As Variant
     celulas = Array("B1")
     contatos(1) = "exemplo - Premcell"
     contatos(2) = "exemplo - Premcell"
     contatos(3) = "exemplo - Premcell"
+    contatos(4) = "exemplo - Premcell"
     comando = "cmd.exe /c start whatsapp:"
     Shell comando, vbHide
     Application.Wait (Now + TimeValue("00:00:08"))
@@ -16,7 +17,7 @@ Sub CriarGrupos()
         If nomeGrupo <> "" Then
             SendKeys "^+N", True
             Application.Wait (Now + TimeValue("00:00:03"))
-            For c = 1 To 3
+            For c = 1 To 4
                 SendKeys contatos(c), True
                 Application.Wait (Now + TimeValue("00:00:03"))
                 SendKeys "{ENTER}", True
