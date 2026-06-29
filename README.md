@@ -7,7 +7,6 @@
 
   - VBA
   - Microsoft Excel
-  - Selenium
   - Git
   - GitHub
   - Visual Studio Code
