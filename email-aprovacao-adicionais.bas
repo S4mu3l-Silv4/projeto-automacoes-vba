@@ -37,7 +37,7 @@ Sub EnviarEmailSolicitacaoAdicional()
         Assinatura = .HTMLBody
         CorpoEmail = "<div style='font-family:Calibri;font-size:11pt;'>" & _
             saudacao & "<br><br>" & _
-            "Xxx, solicito a sua autorização para podemos seguir com os valores abaixo: <br>" & _
+            "Xxx, solicito a sua autorização para podermos seguir com os valores abaixo: <br>" & _
         "</div><br>"
         .HTMLBody = CorpoEmail & Assinatura
         Set WordEditor = .GetInspector.WordEditor
