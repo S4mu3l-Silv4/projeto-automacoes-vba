@@ -3,6 +3,8 @@ Sub EnviarEmailSolicitacaoAdicional()
     Dim OutlookMail As Object
     Dim WordEditor As Object
     Dim rng As Range
+    Dim tbl As Object
+    Dim rngTabela As Object
     Dim saudacao As String
     Dim horaAtual As Integer
     Dim CorpoEmail As String
@@ -46,11 +48,17 @@ Sub EnviarEmailSolicitacaoAdicional()
             .PasteExcelTable False, False, True
         End With
         If WordEditor.Tables.Count > 0 Then
-            With WordEditor.Tables(WordEditor.Tables.Count)
+            Set tbl = WordEditor.Tables(WordEditor.Tables.Count)
+            With tbl
                 .AutoFitBehavior 1
             End With
+            Set rngTabela = tbl.Range
+            rngTabela.Collapse 0
+            rngTabela.InsertParagraphAfter
         End If
     End With
+    Set rngTabela = Nothing
+    Set tbl = Nothing
     Set rng = Nothing
     Set WordEditor = Nothing
     Set OutlookMail = Nothing
