@@ -40,9 +40,16 @@ Sub EnviarEmailCobrancaVOClaro()
         .HTMLBody = CorpoEmail & Assinatura
         Set WordEditor = .GetInspector.WordEditor
         rng.Copy
-        WordEditor.Application.Selection.HomeKey 6
-        WordEditor.Application.Selection.MoveDown Unit:=5, Count:=4
-        WordEditor.Application.Selection.PasteExcelTable False, False, True
+        With WordEditor.Application.Selection
+            .HomeKey 6
+            .MoveDown Unit:=5, Count:=4
+            .PasteExcelTable False, False, True
+        End With
+        If WordEditor.Tables.Count > 0 Then
+            With WordEditor.Tables(WordEditor.Tables.Count)
+                .AutoFitBehavior 1
+            End With
+        End If
     End With
     Set rng = Nothing
     Set WordEditor = Nothing
