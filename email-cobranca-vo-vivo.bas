@@ -2,13 +2,13 @@ Sub EnviarEmailCobrancaVOVivo()
     Dim OutlookApp As Object
     Dim OutlookMail As Object
     Dim WordEditor As Object
-    Dim rng As Range
+    Dim range As Range
     Dim saudacao As String
     Dim horaAtual As Integer
     Dim CorpoEmail As String
     Dim Assinatura As String
     On Error Resume Next
-    Set rng = Sheets("VOs_CO").Range("A1").CurrentRegion.Resize(, 8).SpecialCells(xlCellTypeVisible)
+    Set range = Sheets("VOs_CO").Range("A1").CurrentRegion.Resize(, 8).SpecialCells(xlCellTypeVisible)
     On Error GoTo 0
     horaAtual = Hour(Now)
     If horaAtual >= 18 Then
@@ -39,7 +39,7 @@ Sub EnviarEmailCobrancaVOVivo()
         "</div>"
         .HTMLBody = CorpoEmail & Assinatura
         Set WordEditor = .GetInspector.WordEditor
-        rng.Copy
+        range.Copy
         With WordEditor.Application.Selection
             .HomeKey 6
             .MoveDown Unit:=5, Count:=4
@@ -51,7 +51,7 @@ Sub EnviarEmailCobrancaVOVivo()
             End With
         End If
     End With
-    Set rng = Nothing
+    Set range = Nothing
     Set WordEditor = Nothing
     Set OutlookMail = Nothing
     Set OutlookApp = Nothing

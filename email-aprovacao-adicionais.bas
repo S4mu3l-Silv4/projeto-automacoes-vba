@@ -1,16 +1,16 @@
 Sub EnviarEmailSolicitacaoAdicional()
-    Dim OutlookApp As Object
-    Dim OutlookMail As Object
-    Dim WordEditor As Object
-    Dim rng As Range
-    Dim tbl As Object
-    Dim rngTabela As Object
+    Dim outlookApp As Object
+    Dim outlookMail As Object
+    Dim wordEditor As Object
+    Dim range As Range
+    Dim tabela As Object
+    Dim rangeTabela As Object
     Dim saudacao As String
     Dim horaAtual As Integer
-    Dim CorpoEmail As String
-    Dim Assinatura As String
+    Dim corpoEmail As String
+    Dim assinatura As String
     On Error Resume Next
-    Set rng = Sheets("Planilha1").Range("A1").CurrentRegion.Resize(, 11).SpecialCells(xlCellTypeVisible)
+    Set range = Sheets("Planilha1").Range("A1").CurrentRegion.Resize(, 11).SpecialCells(xlCellTypeVisible)
     On Error GoTo 0
     horaAtual = Hour(Now)
     If horaAtual >= 18 Then
@@ -23,44 +23,44 @@ Sub EnviarEmailSolicitacaoAdicional()
         saudacao = "Boa noite, "
     End If
     On Error Resume Next
-    Set OutlookApp = GetObject(Class:="Outlook.Application")
-    If OutlookApp Is Nothing Then
-        Set OutlookApp = CreateObject("Outlook.Application")
+    Set outlookApp = GetObject(Class:="Outlook.Application")
+    If outlookApp Is Nothing Then
+        Set outlookApp = CreateObject("Outlook.Application")
     End If
     On Error GoTo 0
-    Set OutlookMail = OutlookApp.CreateItem(0)
-    With OutlookMail
+    Set outlookMail = outlookApp.CreateItem(0)
+    With outlookMail
         .To = "exemplo@xxx.com; exemplo@xxx.com; exemplo@xxx.com"
         .CC = ""
         .Subject = "Site(s) - Adicional por negociação"
         .Display
-        Assinatura = .HTMLBody
-        CorpoEmail = "<div style='font-family:Calibri;font-size:11pt;'>" & _
+        assinatura = .HTMLBody
+        corpoEmail = "<div style='font-family:Calibri;font-size:11pt;'>" & _
             saudacao & "<br><br>" & _
             "Xxx, solicito a sua autorização para podermos seguir com os valores abaixo: <br>" & _
         "</div><br>"
-        .HTMLBody = CorpoEmail & Assinatura
-        Set WordEditor = .GetInspector.WordEditor
-        rng.Copy
-        With WordEditor.Application.Selection
+        .HTMLBody = corpoEmail & assinatura
+        Set wordEditor = .GetInspector.WordEditor
+        range.Copy
+        With wordEditor.Application.Selection
             .HomeKey 6
             .MoveDown Unit:=5, Count:=4
             .PasteExcelTable False, False, True
         End With
-        If WordEditor.Tables.Count > 0 Then
-            Set tbl = WordEditor.Tables(WordEditor.Tables.Count)
-            With tbl
+        If wordEditor.Tables.Count > 0 Then
+            Set tabela = wordEditor.Tables(wordEditor.Tables.Count)
+            With tabela
                 .AutoFitBehavior 1
             End With
-            Set rngTabela = tbl.Range
-            rngTabela.Collapse 0
-            rngTabela.InsertParagraphAfter
+            Set rangeTabela = tabela.Range
+            rangeTabela.Collapse 0
+            rangeTabela.InsertParagraphAfter
         End If
     End With
-    Set rngTabela = Nothing
-    Set tbl = Nothing
-    Set rng = Nothing
-    Set WordEditor = Nothing
-    Set OutlookMail = Nothing
-    Set OutlookApp = Nothing
+    Set rangeTabela = Nothing
+    Set tabela = Nothing
+    Set range = Nothing
+    Set wordEditor = Nothing
+    Set outlookMail = Nothing
+    Set outlookApp = Nothing
 End Sub
