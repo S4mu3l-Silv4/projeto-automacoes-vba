@@ -3,11 +3,11 @@ Sub EnviarEmailSolicitacaoAdicional()
     Dim outlookMail As Object
     Dim wordEditor As Object
     Dim range As Range
+    Dim horaAtual As Integer
+    Dim saudacao As String
+    Dim corpoEmail As String
     Dim tabela As Object
     Dim rangeTabela As Object
-    Dim saudacao As String
-    Dim horaAtual As Integer
-    Dim corpoEmail As String
     Dim assinatura As String
     On Error Resume Next
     Set range = Sheets("Planilha1").Range("A1").CurrentRegion.Resize(, 11).SpecialCells(xlCellTypeVisible)
