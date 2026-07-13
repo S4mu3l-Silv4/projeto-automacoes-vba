@@ -9,7 +9,7 @@ Sub EnviarEmailProgramacaoPagamentos()
     Dim numSemana As Integer
     Dim corpoEmail As String
     Dim assinatura As String
-    caminhoArquivo = "C:\Users\OPERAÇÃO 03\Dropbox\VOs_CO\VOs_CO.xlsm"
+    caminhoArquivo = "Camihno do arquivo"
     On Error Resume Next
     Set range = Sheets("FSP - Pagamentos Premcell").Range("A1").CurrentRegion.SpecialCells(xlCellTypeVisible)
     On Error GoTo 0
