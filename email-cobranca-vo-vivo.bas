@@ -8,7 +8,7 @@ Sub EnviarEmailCobrancaVOVivo()
     Dim corpoEmail As String
     Dim assinatura As String
     On Error Resume Next
-    Set range = Sheets("VOs_CO").Range("A1").CurrentRegion.Resize(, 8).SpecialCells(xlCellTypeVisible)
+    Set range = Sheets("db_vo").Range("A1").CurrentRegion.Resize(, 8).SpecialCells(xlCellTypeVisible)
     On Error GoTo 0
     horaAtual = Hour(Now)
     If horaAtual >= 18 Then
@@ -28,7 +28,7 @@ Sub EnviarEmailCobrancaVOVivo()
     On Error GoTo 0
     Set outlookMail = outlookApp.CreateItem(0)
     With outlookMail
-        .To = "exemplo@xxx.com; exemplo@xxx.com; exemplo@xxx.com; exemplo@xxx.com; exemplo@xxx.com; exemplo@xxx.com; exemplo@xxx.com; exemplo@xxx.com"
+        .To = "exemplo@xxx.com; exemplo@xxx.com; exemplo@xxx.com; exemplo@xxx.com; exemplo@xxx.com; exemplo@xxx.com; exemplo@xxx.com"
         .CC = "exemplo@xxx.com; exemplo@xxx.com; exemplo@xxx.com; exemplo@xxx.com"
         .Subject = "Cobrança de VO - Vivo - CO"
         .Display
