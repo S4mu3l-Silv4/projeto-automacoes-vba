@@ -28,8 +28,8 @@ Sub EnviarEmailCobrancaVOClaro()
     On Error GoTo 0
     Set outlookMail = outlookApp.CreateItem(0)
     With outlookMail
-        .To = "alisson.rocha.manpower@h-partners.com; cassio.santos@huawei.com; diego.cardoso@huawei.com; geovanna.dutra.barbosa@huawei.com; misael.andrade@huawei.com"
-        .CC = "joao.moreira@premcell.com.br; joao.guerra@premcell.com.br; kelly.martins@premcell.com.br; luan.pereira@premcell.com.br"
+        .To = "exemplo@xxx.com; exemplo@xxx.com; exemplo@xxx.com; exemplo@xxx.com; exemplo@xxx.com"
+        .CC = "exemplo@xxx.com; exemplo@xxx.com; exemplo@xxx.com; exemplo@xxx.com"
         .Subject = "Cobrança de VO - Claro - CO"
         .Display
         assinatura = .HTMLBody
