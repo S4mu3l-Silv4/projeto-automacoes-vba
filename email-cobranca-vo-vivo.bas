@@ -2,13 +2,13 @@ Sub EnviarEmailCobrancaVOVivo()
     Dim outlookApp As Object
     Dim outlookMail As Object
     Dim wordEditor As Object
-    Dim range As Range
+    Dim range As range
     Dim horaAtual As Integer
     Dim saudacao As String
     Dim corpoEmail As String
     Dim assinatura As String
     On Error Resume Next
-    Set range = Sheets("db_vo").Range("A1").CurrentRegion.Resize(, 8).SpecialCells(xlCellTypeVisible)
+    Set range = Sheets("Base-dados-VOs").range("A1").CurrentRegion.Resize(, 3).SpecialCells(xlCellTypeVisible)
     On Error GoTo 0
     horaAtual = Hour(Now)
     If horaAtual >= 18 Then
@@ -28,8 +28,8 @@ Sub EnviarEmailCobrancaVOVivo()
     On Error GoTo 0
     Set outlookMail = outlookApp.CreateItem(0)
     With outlookMail
-        .To = "exemplo@xxx.com; exemplo@xxx.com; exemplo@xxx.com; exemplo@xxx.com; exemplo@xxx.com; exemplo@xxx.com; exemplo@xxx.com"
-        .CC = "exemplo@xxx.com; exemplo@xxx.com; exemplo@xxx.com; exemplo@xxx.com"
+        .To = "daniela.queiroz.freitas@huawei.com; Fatima.Ibrahim@huawei.com; gabriel.de.sobrinho@huawei.com; geovanna.dutra.barbosa@huawei.com; joao.brigagao.randstad@h-partners.com; luan.maciel@h-partners.com; misael.andrade@huawei.com"
+        .CC = "joao.moreira@premcell.com.br; joao.guerra@premcell.com.br; kelly.martins@premcell.com.br; luan.pereira@premcell.com.br"
         .Subject = "Cobrança de VO - Vivo - CO"
         .Display
         assinatura = .HTMLBody
@@ -38,7 +38,7 @@ Sub EnviarEmailCobrancaVOVivo()
             "Poderiam verificar as VOs abaixo por gentileza? Esses casos estão com pendência de aprovação: <br>" & _
         "</div>"
         .HTMLBody = corpoEmail & assinatura
-        Set wordEditor = .GetInspector.WordEditor
+        Set wordEditor = .GetInspector.wordEditor
         range.Copy
         With wordEditor.Application.Selection
             .HomeKey 6
