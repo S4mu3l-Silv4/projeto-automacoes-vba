@@ -10,7 +10,7 @@ Sub EnviarEmailSolicitacaoAdicional()
     Dim tabela As Object
     Dim rangeTabela As Object
     On Error Resume Next
-    Set range = Sheets("Planilha1").Range("A1").CurrentRegion.Resize(, 11).SpecialCells(xlCellTypeVisible)
+    Set range = Sheets("Adicionais").Range("A1").CurrentRegion.Resize(, 11).SpecialCells(xlCellTypeVisible)
     On Error GoTo 0
     horaAtual = Hour(Now)
     If horaAtual >= 18 Then
@@ -38,7 +38,7 @@ Sub EnviarEmailSolicitacaoAdicional()
         corpoEmail = "<div style='font-family:Calibri;font-size:11pt;'>" & _
             saudacao & "<br><br>" & _
             "Xxx, solicito a sua autorização para podermos seguir com os valores abaixo: <br>" & _
-        "</div><br>"
+        "</div>"
         .HTMLBody = corpoEmail & assinatura
         Set wordEditor = .GetInspector.WordEditor
         range.Copy
