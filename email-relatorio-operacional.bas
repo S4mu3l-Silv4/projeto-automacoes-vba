@@ -1,13 +1,13 @@
 Sub EnviarEmailRelatorioOperacional()
-    Dim outlookApp As Object
-    Dim outlookMail As Object
-    Dim wordEditor As Object
     Dim range As Range
     Dim horaAtual As Integer
     Dim saudacao As String
     Dim numSemana As Integer
-    Dim corpoEmail As String
+    Dim outlookApp As Object
+    Dim outlookMail As Object
     Dim assinatura As String
+    Dim corpoEmail As String
+    Dim wordEditor As Object
     On Error Resume Next
     Set range = Sheets("Relatorio_Operacional_CO").Range("A1").CurrentRegion.SpecialCells(xlCellTypeVisible)
     On Error GoTo 0

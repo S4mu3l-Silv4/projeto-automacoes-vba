@@ -1,14 +1,14 @@
 Sub EnviarEmailProgramacaoPagamentos()
-    Dim outlookApp As Object
-    Dim outlookMail As Object
-    Dim wordEditor As Object
     Dim caminhoArquivo As String
     Dim range As Range
     Dim horaAtual As Integer
     Dim saudacao As String
     Dim numSemana As Integer
-    Dim corpoEmail As String
+    Dim outlookApp As Object
+    Dim outlookMail As Object
     Dim assinatura As String
+    Dim corpoEmail As String
+    Dim wordEditor As Object
     caminhoArquivo = "C:\Users\OPERAÇÃO 03\Dropbox\Subcon_CO\FSP - Form. Solicitação de Pagamentos - v2026_1_CO.xlsm"
     On Error Resume Next
     Set range = Sheets("FSP - Pagamentos Premcell").Range("A1").CurrentRegion.SpecialCells(xlCellTypeVisible)

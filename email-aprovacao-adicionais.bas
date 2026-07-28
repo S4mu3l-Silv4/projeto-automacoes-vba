@@ -1,14 +1,14 @@
 Sub EnviarEmailSolicitacaoAdicional()
-    Dim outlookApp As Object
-    Dim outlookMail As Object
-    Dim wordEditor As Object
     Dim range As Range
     Dim horaAtual As Integer
     Dim saudacao As String
+    Dim outlookApp As Object
+    Dim outlookMail As Object
+    Dim assinatura As String
     Dim corpoEmail As String
+    Dim wordEditor As Object
     Dim tabela As Object
     Dim rangeTabela As Object
-    Dim assinatura As String
     On Error Resume Next
     Set range = Sheets("Planilha1").Range("A1").CurrentRegion.Resize(, 11).SpecialCells(xlCellTypeVisible)
     On Error GoTo 0

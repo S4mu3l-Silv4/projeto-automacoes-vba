@@ -1,17 +1,17 @@
 Sub EnviarEmailCobrancaVOVivo()
-    Dim outlookApp As Object
-    Dim outlookMail As Object
     Dim ws As Worksheet
-    Dim linha As Long
+    Dim colunas As Variant
     Dim ultimaLinha As Long
     Dim horaAtual As Integer
     Dim saudacao As String
-    Dim corpoEmail As String
-    Dim assinatura As String
     Dim tabelaHTML As String
-    Dim colunas As Variant
     Dim i As Long
+    Dim linha As Long
     Dim valor As String
+    Dim outlookApp As Object
+    Dim outlookMail As Object
+    Dim assinatura As String
+    Dim corpoEmail As String
     Set ws = Sheets("Aba-base-dados-VOs")
     ws.range("G:G").NumberFormat = "0"
     colunas = Array("A", "E", "G", "I", "V", "AM", "AW")
