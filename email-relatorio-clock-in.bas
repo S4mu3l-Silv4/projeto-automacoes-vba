@@ -8,7 +8,7 @@ Sub EnviarEmailRelatorioClockIn()
     Dim corpoEmail As String
     Dim wordEditor As Object
     On Error Resume Next
-    Set range = Sheets("Relatorio_Clock_In_CO").Range("A1").CurrentRegion.SpecialCells(xlCellTypeVisible)
+    Set range = Sheets("relatorio-clock-in-co").Range("A1").CurrentRegion.SpecialCells(xlCellTypeVisible)
     On Error GoTo 0
     horaAtual = Hour(Now)
     If horaAtual >= 18 Then

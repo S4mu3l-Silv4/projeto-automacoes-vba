@@ -9,7 +9,7 @@ Sub EnviarEmailRelatorioWFA()
     Dim corpoEmail As String
     Dim wordEditor As Object
     On Error Resume Next
-    Set range = Sheets("WFA").Range("A1").CurrentRegion.SpecialCells(xlCellTypeVisible)
+    Set range = Sheets("wfa").Range("A1").CurrentRegion.SpecialCells(xlCellTypeVisible)
     On Error GoTo 0
     horaAtual = Hour(Now)
     If horaAtual >= 18 Then

@@ -10,7 +10,7 @@ Sub EnviarEmailSolicitacaoAdicional()
     Dim tabela As Object
     Dim rangeTabela As Object
     On Error Resume Next
-    Set range = Sheets("Adicionais").Range("A1").CurrentRegion.Resize(, 11).SpecialCells(xlCellTypeVisible)
+    Set range = Sheets("adicionais").Range("A1").CurrentRegion.Resize(, 11).SpecialCells(xlCellTypeVisible)
     On Error GoTo 0
     horaAtual = Hour(Now)
     If horaAtual >= 18 Then

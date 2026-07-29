@@ -12,7 +12,7 @@ Sub EnviarEmailCobrancaVOVivo()
     Dim outlookMail As Object
     Dim assinatura As String
     Dim corpoEmail As String
-    Set ws = Sheets("Aba-base-dados-VOs")
+    Set ws = Sheets("aba-base-dados-vos")
     ws.range("G:G").NumberFormat = "0"
     colunas = Array("A", "E", "G", "I", "V", "AM", "AW")
     ultimaLinha = ws.Cells(ws.Rows.Count, "A").End(xlUp).Row

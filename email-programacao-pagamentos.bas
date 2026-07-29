@@ -9,7 +9,7 @@ Sub EnviarEmailProgramacaoPagamentos()
     Dim assinatura As String
     Dim corpoEmail As String
     Dim wordEditor As Object
-    caminhoArquivo = "C:\Users\PREMCELL\Downloads\controle-CO\FSP - Form. Solicitação de Pagamentos - v2026_1_CO.xlsm"
+    caminhoArquivo = "C:\Users\PREMCELL\Downloads\controle\FSP - Form. Solicitação de Pagamentos - v2026_1_CO.xlsm"
     On Error Resume Next
     Set range = Sheets("FSP - Pagamentos Premcell").Range("A1").CurrentRegion.SpecialCells(xlCellTypeVisible)
     On Error GoTo 0
