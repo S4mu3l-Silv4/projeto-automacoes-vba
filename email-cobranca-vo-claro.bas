@@ -55,8 +55,8 @@ Sub EnviarEmailCobrancaVOClaro()
     Set outlookMail = outlookApp.CreateItem(0)
     With outlookMail
         .To = "exemplo@xxx.com; exemplo@xxx.com; exemplo@xxx.com; exemplo@xxx.com"
-        .CC = "exemplo@xxx.com; exemplo@xxx.com; exemplo@xxx.com; exemplo@xxx.com"
-        .Subject = "Cobrança de VO - Claro - CO"
+        .CC = "exemplo@xxx.com; exemplo@xxx.com"
+        .Subject = "Cobrança de VO - Claro"
         .Display
         assinatura = .HTMLBody
         corpoEmail = _
