@@ -14,7 +14,7 @@ Sub EnviarEmailCobrancaVOClaro()
     Dim corpoEmail As String
     Set ws = Sheets("aba-base-dados-vos")
     ws.range("G:G").NumberFormat = "0"
-    colunas = Array("A", "E", "G", "I", "V", "AM", "AW")
+    colunas = Array("A", "E", "G", "I", "V", "AW", "BA")
     ultimaLinha = ws.Cells(ws.Rows.Count, "A").End(xlUp).Row
     horaAtual = Hour(Now)
     If horaAtual >= 18 Then
