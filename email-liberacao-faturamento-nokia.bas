@@ -32,15 +32,15 @@ Sub EnviarEmailLiberacaoFaturamentoNokia()
     On Error GoTo 0
     Set outlookMail = outlookApp.CreateItem(0)
     With outlookMail
-        .To = "financeiro@premcell.com.br; kelly.martins@premcell.com.br; rita.araujo@premcell.com.br"
-        .CC = "joao.moreira@premcell.com.br; luan.pereira@premcell.com.br"
+        .To = "exemplo@xxx.com; exemplo@xxx.com; exemplo@xxx.com; exemplo@xxx.com"
+        .CC = "exemplo@xxx.com; exemplo@xxx.com; exemplo@xxx.com"
         .Subject = "Liberação para faturamento Nokia TCO " & _
         Sheets("faturamento-nokia").range("A2").Value
         .Display
         assinatura = .HTMLBody
         corpoEmail = "<div style='font-family:Calibri;font-size:11pt;'>" & _
             saudacao & "<br><br>" & _
-            "Seguem liberações para faturamento liberadas pela Nokia: <br>" & _
+            "Segue liberação para faturamento liberada pela Nokia: <br>" & _
             "</div>"
         .HTMLBody = corpoEmail & assinatura
         Set wordEditor = .GetInspector.wordEditor
