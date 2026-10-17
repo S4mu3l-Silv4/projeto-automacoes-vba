@@ -1,4 +1,4 @@
-# Projeto automações com VBA:
+# Projeto Automações com VBA:
 
   Este projeto foi desenvolvido como um aprimoramento pessoal, objetivando praticar e demonstrar as minhas habilidades na área Back-End.
   <br>
