@@ -1,5 +1,5 @@
-Sub EnviarEmailSolicitacaoAdicional()
-    Dim range As Range
+Sub EnviarEmailSolicitacaoAprovacaoAdicional()
+    Dim range As range
     Dim horaAtual As Integer
     Dim saudacao As String
     Dim outlookApp As Object
@@ -10,7 +10,7 @@ Sub EnviarEmailSolicitacaoAdicional()
     Dim tabela As Object
     Dim rangeTabela As Object
     On Error Resume Next
-    Set range = Sheets("adicionais").Range("A1").CurrentRegion.Resize(, 11).SpecialCells(xlCellTypeVisible)
+    Set range = Sheets("adicionais").range("A1").CurrentRegion.Resize(, 11).SpecialCells(xlCellTypeVisible)
     On Error GoTo 0
     horaAtual = Hour(Now)
     If horaAtual >= 18 Then
@@ -30,17 +30,17 @@ Sub EnviarEmailSolicitacaoAdicional()
     On Error GoTo 0
     Set outlookMail = outlookApp.CreateItem(0)
     With outlookMail
-        .To = "exemplo@xxx.com; exemplo@xxx.com; exemplo@xxx.com"
-        .CC = ""
+        .To = "exemplo@xxx.com; exemplo@xxx.com"
+        .CC = "exemplo@xxx.com"
         .Subject = "Site(s) - Adicional por negociação"
         .Display
         assinatura = .HTMLBody
-        corpoEmail = "<div style='font-family:Calibri;font-size:11pt;'>" & _
+        corpoEmail = "<div style='font-family:Calibri;font-size:11pt;margin:0;padding:0;'>" & _
             saudacao & "<br><br>" & _
             "Xxx, solicito a sua autorização para podermos seguir com os valores abaixo: <br>" & _
-        "</div>"
+            "</div>"
         .HTMLBody = corpoEmail & assinatura
-        Set wordEditor = .GetInspector.WordEditor
+        Set wordEditor = .GetInspector.wordEditor
         range.Copy
         With wordEditor.Application.Selection
             .HomeKey 6
@@ -51,10 +51,11 @@ Sub EnviarEmailSolicitacaoAdicional()
             Set tabela = wordEditor.Tables(wordEditor.Tables.Count)
             With tabela
                 .AutoFitBehavior 1
+                .range.ParagraphFormat.SpaceAfter = 0
+                .range.ParagraphFormat.SpaceBefore = 0
             End With
-            Set rangeTabela = tabela.Range
+            Set rangeTabela = tabela.range
             rangeTabela.Collapse 0
-            rangeTabela.InsertParagraphAfter
         End If
     End With
     Set rangeTabela = Nothing

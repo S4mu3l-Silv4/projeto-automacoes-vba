@@ -9,6 +9,7 @@ Sub EnviarEmailProgramacaoPagamentos()
     Dim assinatura As String
     Dim corpoEmail As String
     Dim wordEditor As Object
+    Dim tabela As Object
     caminhoArquivo = "C:\Users\PREMCELL\Downloads\controle\FSP - Form. Solicitação de Pagamentos - v2026_1_CO.xlsm"
     On Error Resume Next
     Set range = Sheets("FSP - Pagamentos Premcell").Range("A1").CurrentRegion.SpecialCells(xlCellTypeVisible)
@@ -38,10 +39,7 @@ Sub EnviarEmailProgramacaoPagamentos()
         .Attachments.Add caminhoArquivo
         .Display
         assinatura = .HTMLBody
-        corpoEmail = "<div style='font-family:Calibri;font-size:11pt;'>" & _
-            saudacao & "<br><br>" & _
-            "Segue a Programação de Pagamentos: <br>" & _
-        "</div>"
+        corpoEmail = "<div style='font-family:Calibri;font-size:11pt;margin:0;padding:0;'>" & saudacao & "<br><br>" & "Segue a Programação de Pagamentos:<br></div>"
         .HTMLBody = corpoEmail & assinatura
         Set wordEditor = .GetInspector.WordEditor
         range.Copy
@@ -51,11 +49,15 @@ Sub EnviarEmailProgramacaoPagamentos()
             .PasteExcelTable False, False, True
         End With
         If wordEditor.Tables.Count > 0 Then
-            With wordEditor.Tables(wordEditor.Tables.Count)
+            Set tabela = wordEditor.Tables(wordEditor.Tables.Count)
+            With tabela
                 .AutoFitBehavior 1
+                .Range.ParagraphFormat.SpaceAfter = 0
+                .Range.ParagraphFormat.SpaceBefore = 0
             End With
         End If
     End With
+    Set tabela = Nothing
     Set range = Nothing
     Set wordEditor = Nothing
     Set outlookMail = Nothing

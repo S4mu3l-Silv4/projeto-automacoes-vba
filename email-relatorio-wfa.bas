@@ -8,6 +8,7 @@ Sub EnviarEmailRelatorioWFA()
     Dim assinatura As String
     Dim corpoEmail As String
     Dim wordEditor As Object
+    Dim tabela As Object
     On Error Resume Next
     Set range = Sheets("wfa").Range("A1").CurrentRegion.SpecialCells(xlCellTypeVisible)
     On Error GoTo 0
@@ -35,10 +36,7 @@ Sub EnviarEmailRelatorioWFA()
         .Subject = "WFA - Mês - W" & numSemana
         .Display
         assinatura = .HTMLBody
-        corpoEmail = "<div style='font-family:Calibri;font-size:11pt;'>" & _
-            saudacao & "<br><br>" & _
-            "Segue o relatório WFA atualizado: <br>" & _
-        "</div>"
+        corpoEmail = "<div style='font-family:Calibri;font-size:11pt;margin:0;padding:0;'>" & saudacao & "<br><br>" & "Segue o relatório WFA atualizado:<br></div>"
         .HTMLBody = corpoEmail & assinatura
         Set wordEditor = .GetInspector.WordEditor
         range.Copy
@@ -48,11 +46,15 @@ Sub EnviarEmailRelatorioWFA()
             .PasteExcelTable False, False, True
         End With
         If wordEditor.Tables.Count > 0 Then
-            With wordEditor.Tables(wordEditor.Tables.Count)
+            Set tabela = wordEditor.Tables(wordEditor.Tables.Count)
+            With tabela
                 .AutoFitBehavior 1
+                .Range.ParagraphFormat.SpaceAfter = 0
+                .Range.ParagraphFormat.SpaceBefore = 0
             End With
         End If
     End With
+    Set tabela = Nothing
     Set range = Nothing
     Set wordEditor = Nothing
     Set outlookMail = Nothing

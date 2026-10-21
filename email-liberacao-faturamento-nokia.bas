@@ -32,10 +32,9 @@ Sub EnviarEmailLiberacaoFaturamentoNokia()
     On Error GoTo 0
     Set outlookMail = outlookApp.CreateItem(0)
     With outlookMail
-        .To = "exemplo@xxx.com; exemplo@xxx.com; exemplo@xxx.com; exemplo@xxx.com"
-        .CC = "exemplo@xxx.com; exemplo@xxx.com; exemplo@xxx.com"
-        .Subject = "Liberação para faturamento Nokia TCO " & _
-        Sheets("faturamento-nokia").range("A2").Value
+        .To = "exemplo@xxx.com; exemplo@xxx.com; exemplo@xxx.com"
+        .CC = "exemplo@xxx.com; exemplo@xxx.com"
+        .Subject = "Liberação para faturamento Nokia TCO"
         .Display
         assinatura = .HTMLBody
         corpoEmail = "<div style='font-family:Calibri;font-size:11pt;'>" & _
@@ -52,12 +51,9 @@ Sub EnviarEmailLiberacaoFaturamentoNokia()
         End With
         If wordEditor.Tables.Count > 0 Then
             Set tabela = wordEditor.Tables(wordEditor.Tables.Count)
-            With tabela
-                .AutoFitBehavior 1
-            End With
+            tabela.AutoFitBehavior 1
             Set rangeTabela = tabela.range
             rangeTabela.Collapse 0
-            rangeTabela.InsertParagraphAfter
         End If
         caminhoPasta = ThisWorkbook.Path
         If Right(caminhoPasta, 1) <> "\" Then
