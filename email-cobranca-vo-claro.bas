@@ -1,4 +1,4 @@
-Sub EnviarEmailCobrancaVOClaro()
+Sub EnviarEmailCobrancaVO()
     Dim ws As Worksheet
     Dim colunas As Variant
     Dim ultimaLinha As Long
@@ -56,7 +56,7 @@ Sub EnviarEmailCobrancaVOClaro()
     With outlookMail
         .To = "exemplo@xxx.com; exemplo@xxx.com; exemplo@xxx.com; exemplo@xxx.com; exemplo@xxx.com; exemplo@xxx.com; exemplo@xxx.com"
         .CC = "exemplo@xxx.com; exemplo@xxx.com; exemplo@xxx.com"
-        .Subject = "Cobrança de VO - Claro"
+        .Subject = "Cobrança de VO"
         .Display
         assinatura = .HTMLBody
         corpoEmail = _
