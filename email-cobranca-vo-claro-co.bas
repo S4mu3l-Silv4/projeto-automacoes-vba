@@ -1,4 +1,4 @@
-Sub EnviarEmailCobrancaVO()
+Sub EnviarEmailCobrancaVOCO()
     Dim ws As Worksheet
     Dim colunas As Variant
     Dim ultimaLinha As Long
@@ -54,7 +54,7 @@ Sub EnviarEmailCobrancaVO()
     On Error GoTo 0
     Set outlookMail = outlookApp.CreateItem(0)
     With outlookMail
-        .To = "exemplo@xxx.com; exemplo@xxx.com; exemplo@xxx.com; exemplo@xxx.com; exemplo@xxx.com; exemplo@xxx.com; exemplo@xxx.com"
+        .To = "exemplo@xxx.com; exemplo@xxx.com; exemplo@xxx.com; exemplo@xxx.com; exemplo@xxx.com; exemplo@xxx.com"
         .CC = "exemplo@xxx.com; exemplo@xxx.com; exemplo@xxx.com"
         .Subject = "Cobrança de VO"
         .Display

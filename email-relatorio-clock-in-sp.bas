@@ -1,4 +1,4 @@
-Sub EnviarEmailRelatorioClockIn()
+Sub EnviarEmailRelatorioClockInSP()
     Dim range As Range
     Dim horaAtual As Integer
     Dim saudacao As String
