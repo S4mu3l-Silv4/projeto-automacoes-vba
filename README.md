@@ -1,6 +1,6 @@
 # Projeto Automações com VBA:
 
-  Este projeto foi desenvolvido como um aprimoramento pessoal, objetivando praticar e demonstrar as minhas habilidades na área Back-End.
+  Este projeto foi desenvolvido como um aprimoramento pessoal, objetivando praticar e demonstrar as minhas habilidades na área Back-end.
   <br>
   <br>
 ## Tecnologias utilizadas:
